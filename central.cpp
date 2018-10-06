@@ -251,7 +251,7 @@ void addPatient( HOSPITAL_MAP & hosMap )
       }
       else
       {
-         cout << "Enter patient name >> ";
+         cout << "\nEnter patient name >> ";
          getline(cin, patientName);
 
          cout << "Enter the UR number (int) >> ";

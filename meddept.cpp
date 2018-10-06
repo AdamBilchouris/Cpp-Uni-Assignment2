@@ -44,8 +44,6 @@ istream& operator >> (istream& is, MedDept& md)
    cout << "Enter treatment type of the department >> ";
    getline(is, md.treatmentType);
 
-   is.ignore(10000, '\n');
-
    return is;
 }
 

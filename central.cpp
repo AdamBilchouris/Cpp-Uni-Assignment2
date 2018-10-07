@@ -251,28 +251,65 @@ void addPatient( HOSPITAL_MAP & hosMap )
       }
       else
       {
+         bool enteredUR = false;
          cout << "\nEnter patient name >> ";
          getline(cin, patientName);
 
-         cout << "Enter the UR number (int) >> ";
-         cin >> urNumber;
-         cin.clear();
-         cin.ignore(1000, '\n');
+         do
+         {
+            cout << "Enter the UR number (int) >> ";
+            cin >> urNumber;
+            cin.ignore(1000, '\n');
+
+            if(cin.fail() == true)
+            {
+               cout << "Please enter an integer" << endl;
+               cin.clear();
+               cin.ignore(10000, '\n');
+            }
+            else
+            {
+               enteredUR = true;
+            }
+         } while(enteredUR == false);
+
 
          if(patientExists(urNumber, hosMap) == true)
          {
             cout << "A patient wiht this UR Number already exists" << endl;
          }
-         
+
          else
          {
+            bool enteredTLevel = false;
             cout << "\nEnter blood type >> ";
             getline(cin, bloodType);
-            
-            cout << "Enter t level (int) >> ";
-            cin >> tLevel;
-            cin.clear();
-            cin.ignore(1000, '\n');
+
+            do
+            {
+               cout << "Enter t level (int) >> ";
+               cin >> tLevel;
+               cin.ignore(1000, '\n');
+
+               if(cin.fail() == true) 
+               {
+                  cout << "Please enter an integer between 1 and 5 (inclusive)" << endl;
+                  cin.clear();
+                  cin.ignore(1000, '\n');
+               }
+               else if(!cin.fail())
+               {
+                  if(tLevel < 1 || tLevel > 5)
+                  {
+                     cout << "Please enter an integer between 1 and 5 (inclusive)" << endl;
+                  }
+                  else
+                  {
+                     enteredTLevel = true;
+                  }
+               }
+
+            } while(enteredTLevel == false);
 
             Patient tempPatient(patientName, urNumber, bloodType, tLevel);
 
